@@ -3,11 +3,7 @@ Demonstração de OOP em PL/SQL
 
 Apresentação da implementação dos conceitos de abstração, encapsulamento, herança e associação em ORACLE PL/SQL conforme demonstrado no artigo https://www.linkedin.com/pulse/conceitos-de-oop-em-plsql-orlando-dias/.
 
-As extensões significam:
-PKS - PACKAGE SPECIFICATION
-PKB - PACKAGE BODY
-TYS - TYPE SPECIFICATION
-TYB - TYPE BODY
+As extensões dos arquivos significam: PKS - PACKAGE SPECIFICATION, PKB - PACKAGE BODY. TYS - TYPE SPECIFICATION, TYB - TYPE BODY
 
 Para executar é necessário alterar o parâmetro UTL_FILE_DIR do banco de dados. Com um usuário DBA (SYSTEM, por exemplo) emita o comando:
 ALTER SYSTEM SET UTL_FILE_DIR=* SCOPE='SPFILE';

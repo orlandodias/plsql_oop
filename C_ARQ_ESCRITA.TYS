@@ -1,0 +1,56 @@
+CREATE OR REPLACE 
+TYPE C_ARQ_ESCRITA UNDER C_ARQ (
+----------------------------------------------------------------------------------
+-- ARQUIVOS DE ESCRITA APENAS
+----------------------------------------------------------------------------------
+-- PROPRIEDADES
+----------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------
+-- CONSTRUTOR SIMPLES
+----------------------------------------------------------------------------------
+CONSTRUCTOR FUNCTION C_ARQ_ESCRITA
+RETURN SELF AS RESULT,
+
+----------------------------------------------------------------------------------
+-- CONSTRUTOR COMPLETO
+----------------------------------------------------------------------------------
+CONSTRUCTOR FUNCTION C_ARQ_ESCRITA
+(nmDir     VARCHAR2,
+ nmArq     VARCHAR2,
+ tpArq     VARCHAR2,
+ nuTamReg  INTEGER)
+RETURN SELF AS RESULT,
+
+----------------------------------------------------------------------------------
+-- DEFINE UM ARQUIVO COM TAMANHO DE 2000 BYTES
+----------------------------------------------------------------------------------
+CONSTRUCTOR FUNCTION C_ARQ_ESCRITA
+(nmDir     VARCHAR2,
+ nmArq     VARCHAR2,
+ tpArq     VARCHAR2)
+RETURN SELF AS RESULT,
+
+----------------------------------------------------------------------------------
+-- DEFINE UM ARQUIVO DE LEITURA COM TAMANHO DE 2000 BYTES
+----------------------------------------------------------------------------------
+CONSTRUCTOR FUNCTION C_ARQ_ESCRITA
+(nmDir     VARCHAR2,
+ nmArq     VARCHAR2)
+RETURN SELF AS RESULT,
+
+----------------------------------------------------------------------------------
+-- METODOS
+----------------------------------------------------------------------------------
+OVERRIDING MEMBER PROCEDURE le_nchar
+(s_linha OUT VARCHAR2),
+
+OVERRIDING MEMBER PROCEDURE le
+(s_linha OUT VARCHAR2),
+
+OVERRIDING MEMBER PROCEDURE le_nchar,
+
+OVERRIDING MEMBER PROCEDURE le
+) FINAL
+/
+SHOW ERRORS;

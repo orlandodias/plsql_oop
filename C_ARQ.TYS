@@ -1,0 +1,80 @@
+CREATE OR REPLACE 
+TYPE C_ARQ AS OBJECT
+----------------------------------------------------------------------------------
+-- ARQUIVOS TEXTO
+----------------------------------------------------------------------------------
+-- PROPRIEDADES
+----------------------------------------------------------------------------------
+(id         INTEGER,
+ dataType   INTEGER,
+ nmDir      VARCHAR2(250),    -- PASTA OU DIRETORIO DO ARQUIVO
+ nmArq      VARCHAR2(250),    -- NOME DO ARQUIVO (INCLUINDO EXTENSAO)
+ tpArq      VARCHAR2(001),    -- TIPO DO ARQUIVO: R->LEITURA, W->GRAVACAO
+ nuTamReg   INTEGER,          -- TAMANHO MAXIMO DO REGISTRO
+ nuLin      INTEGER,          -- NUMERO DA LINHA A SER LIDA OU GRAVADA
+ deLin      VARCHAR2(32767),  -- LINHA A SER LIDA OU GRAVADA
+
+----------------------------------------------------------------------------------
+-- CONSTRUTOR SIMPLES
+----------------------------------------------------------------------------------
+CONSTRUCTOR FUNCTION C_ARQ
+RETURN SELF AS RESULT,
+
+----------------------------------------------------------------------------------
+-- CONSTRUTOR COMPLETO
+----------------------------------------------------------------------------------
+CONSTRUCTOR FUNCTION C_ARQ
+(nmDir     VARCHAR2,
+ nmArq     VARCHAR2,
+ tpArq     VARCHAR2,
+ nuTamReg  INTEGER)
+RETURN SELF AS RESULT,
+
+----------------------------------------------------------------------------------
+-- DEFINE UM ARQUIVO COM TAMANHO DE 2000 BYTES
+----------------------------------------------------------------------------------
+CONSTRUCTOR FUNCTION C_ARQ
+(nmDir     VARCHAR2,
+ nmArq     VARCHAR2,
+ tpArq     VARCHAR2)
+RETURN SELF AS RESULT,
+
+----------------------------------------------------------------------------------
+-- DEFINE UM ARQUIVO DE LEITURA COM TAMANHO DE 2000 BYTES
+----------------------------------------------------------------------------------
+CONSTRUCTOR FUNCTION C_ARQ
+(nmDir     VARCHAR2,
+ nmArq     VARCHAR2)
+RETURN SELF AS RESULT,
+
+----------------------------------------------------------------------------------
+-- METODOS
+----------------------------------------------------------------------------------
+MEMBER PROCEDURE abre_nchar,
+
+MEMBER PROCEDURE abre,
+
+MEMBER PROCEDURE le_nchar
+(s_linha OUT VARCHAR2),
+
+MEMBER PROCEDURE le
+(s_linha OUT VARCHAR2),
+
+MEMBER PROCEDURE le_nchar,
+
+MEMBER PROCEDURE le,
+
+MEMBER PROCEDURE grava_nchar
+(e_linha IN VARCHAR2),
+
+MEMBER PROCEDURE grava
+(e_linha IN VARCHAR2),
+
+MEMBER PROCEDURE grava_nchar,
+
+MEMBER PROCEDURE grava,
+
+MEMBER PROCEDURE fecha
+) NOT FINAL
+/
+SHOW ERRORS;

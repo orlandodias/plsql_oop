@@ -1,0 +1,97 @@
+CREATE OR REPLACE 
+TYPE BODY C_ARQ_ESCRITA AS
+----------------------------------------------------------------------------------
+-- CONSTRUTORES
+----------------------------------------------------------------------------------
+CONSTRUCTOR FUNCTION C_ARQ_ESCRITA
+RETURN SELF AS RESULT
+AS
+BEGIN
+   SELF.nmDir := NULL;
+   SELF.nmArq := NULL;
+   SELF.tpArq := NULL;
+   SELF.nuTamReg := NULL;
+   SELF.nuLin := 0;
+   RETURN;
+END;
+
+CONSTRUCTOR FUNCTION C_ARQ_ESCRITA
+(nmDir     VARCHAR2,
+ nmArq     VARCHAR2,
+ tpArq     VARCHAR2,
+ nuTamReg  INTEGER)
+RETURN SELF AS RESULT
+AS
+BEGIN
+   IF tpArq = 'R' THEN
+      RAISE BIB_EXCEPTIONS.INVALID_READ_OPERATION;
+   END IF;
+   SELF.nmDir := nmDir;
+   SELF.nmArq := nmArq;
+   SELF.tpArq := tpArq;
+   SELF.nuTamReg := nuTamReg;
+   SELF.nuLin := 0;
+   RETURN;
+END;
+
+CONSTRUCTOR FUNCTION C_ARQ_ESCRITA
+(nmDir     VARCHAR2,
+ nmArq     VARCHAR2,
+ tpArq     VARCHAR2)
+RETURN SELF AS RESULT
+AS
+BEGIN
+   IF tpArq = 'R' THEN
+      RAISE BIB_EXCEPTIONS.INVALID_READ_OPERATION;
+   END IF;
+   SELF.nmDir := nmDir;
+   SELF.nmArq := nmArq;
+   SELF.tpArq := tpArq;
+   SELF.nuTamReg := 2000;
+   SELF.nuLin := 0;
+   RETURN;
+END;
+
+CONSTRUCTOR FUNCTION C_ARQ_ESCRITA
+(nmDir     VARCHAR2,
+ nmArq     VARCHAR2)
+RETURN SELF AS RESULT
+AS
+BEGIN
+   SELF.nmDir := nmDir;
+   SELF.nmArq := nmArq;
+   SELF.tpArq := 'W';
+   SELF.nuTamReg := 2000;
+   SELF.nuLin := 0;
+   RETURN;
+END;
+
+OVERRIDING MEMBER PROCEDURE le
+IS
+BEGIN
+   RAISE BIB_EXCEPTIONS.INVALID_READ_OPERATION;
+END;
+
+OVERRIDING MEMBER PROCEDURE le_nchar
+IS
+BEGIN
+   RAISE BIB_EXCEPTIONS.INVALID_READ_OPERATION;
+END;
+
+OVERRIDING MEMBER PROCEDURE le_nchar
+(s_linha OUT VARCHAR2)
+IS
+BEGIN
+   RAISE BIB_EXCEPTIONS.INVALID_READ_OPERATION;
+END;
+
+OVERRIDING MEMBER PROCEDURE le
+(s_linha OUT VARCHAR2)
+IS
+BEGIN
+   RAISE BIB_EXCEPTIONS.INVALID_READ_OPERATION;
+END;
+
+END;
+/
+SHOW ERRORS;

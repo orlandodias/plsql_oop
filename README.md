@@ -17,3 +17,5 @@ Após a emissão do comando reinicie o serviço do BD.
 Para verificação se a alteração foi bem sucedida, emita o comando abaixo:
 SHOW PARAMETER UTL_FILE_DIR;
 
+Para executar os testes, use a PROCEDURE MAIN do PACKAGE PKG_TESTE.
+
